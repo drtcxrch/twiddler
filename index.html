@@ -21,7 +21,7 @@
 
 
       $(document).ready(function(){
-
+        var $body = $('.tweeds');
         var currentFeedLength = 11;
 
         //Populate initial feed
@@ -32,9 +32,10 @@
           while (index >= 0) {
             var tweet = streams.home[index];
             var $tweet = $('<div class="tweet"></div>');
+            var $user = $('<p class="user"></p>');
 
-            $tweet.html('<b>@' + tweet.user + ':</b> ' + tweet.message + ' <i> - ' + tweet.created_at + '</i>');
-            $tweet.appendTo(".main");
+           $tweet.appendTo('.main');
+            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> (Posted on <em> ' + tweet.created_at + ')</em></span>').appendTo($tweet);
             index -= 1;
           }
         }
@@ -52,10 +53,26 @@
           for (var i = 0; i < tweets.length; i++) {
             var tweet = tweets[i];
             var $tweet = $('<div class="tweet"></div>');
-
-            $tweet.html('<b>@' + tweet.user + ':</b> ' + tweet.message + ' <i> - ' + tweet.created_at + '</i>');
-            $tweet.appendTo(".main");
+            var $user = $('<p class="user"></p>');
+            $tweet.appendTo('.main');
+            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> (Posted on <em> ' + tweet.created_at + ')</em></span>').appendTo($tweet);
           }
+        });
+
+        //Go to user feed
+
+        $('.tweeds').on('click', '.user', function (event) {
+          event.preventDefault();
+          var user = $(this).data('user');
+          $('.userpage').remove();
+          var $userpage = $('<h1 class=userpage>' + user + '\'s Echoes</h1>');
+          $userpage.prependTo($body);
+          $('.newTweets').hide();
+          $('#username').hide();
+          $('.home').show();
+          $('.tweet').not("div:contains('" + user + "')").hide();
+          $("div:contains('" + user + "')").show();
+
         });
       });
 
