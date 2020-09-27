@@ -8,9 +8,11 @@
 
   <body>
     <div class="container">
+      <button class="home">Home</button>
       <h1>Twiddler</h1>
-      <button id="tweed">Get latest Tweeds!</button>
-      <div class="tweeds">
+      <button id="tweet">Get latest Tweeds!</button>
+      <div id="username"></div>
+      <div class="tweets">
         <section class="main">
 
         </section>
@@ -21,7 +23,7 @@
 
 
       $(document).ready(function(){
-        var $body = $('.tweeds');
+        var $body = $('.tweets');
         var currentFeedLength = 11;
 
         //Populate initial feed
@@ -33,7 +35,7 @@
             var tweet = streams.home[index];
             var $tweet = $('<div class="tweet"></div>');
             var $user = $('<p class="user"></p>');
-
+            $('.home').hide();
            $tweet.appendTo('.main');
             $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> (Posted on <em> ' + tweet.created_at + ')</em></span>').appendTo($tweet);
             index -= 1;
@@ -44,7 +46,7 @@
 
         //Click function to get more tweets
 
-        $("#tweed").click(function() {
+        $("#tweet").click(function() {
 
           generateRandomTweet();
 
@@ -54,6 +56,7 @@
             var tweet = tweets[i];
             var $tweet = $('<div class="tweet"></div>');
             var $user = $('<p class="user"></p>');
+             $('.home').hide();
             $tweet.appendTo('.main');
             $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> (Posted on <em> ' + tweet.created_at + ')</em></span>').appendTo($tweet);
           }
@@ -61,11 +64,11 @@
 
         //Go to user feed
 
-        $('.tweeds').on('click', '.user', function (event) {
+        $('.tweets').on('click', '.user', function (event) {
           event.preventDefault();
           var user = $(this).data('user');
           $('.userpage').remove();
-          var $userpage = $('<h1 class=userpage>' + user + '\'s Echoes</h1>');
+          var $userpage = $('<h1 class=userpage>' + user + '\'s Tweeds</h1>');
           $userpage.prependTo($body);
           $('.newTweets').hide();
           $('#username').hide();
@@ -74,6 +77,20 @@
           $("div:contains('" + user + "')").show();
 
         });
+
+              //Go back to main feed
+
+        $('.home').click(function (event) {
+          event.preventDefault();
+          var user = $(this).data('user');
+          $('.userpage').hide();
+          $('.newTweets').show();
+          $('.home').hide();
+          $('#username').show();
+          $("div:contains('" + user + "')").hide();
+          $('.tweet').not("div:contains('" + user + "')").show();
+
+        })
       });
 
     </script>
