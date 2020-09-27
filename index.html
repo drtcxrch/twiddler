@@ -22,9 +22,13 @@
 
       $(document).ready(function(){
 
-        function poplulateFeed() {
-          var index = streams.home.length - 1;
+        var currentFeedLength = 11;
 
+        //Populate initial feed
+
+        function poplulateFeed() {
+
+          var index = streams.home.length - 1;
           while (index >= 0) {
             var tweet = streams.home[index];
             var $tweet = $('<div class="tweet"></div>');
@@ -37,9 +41,22 @@
 
         poplulateFeed();
 
+        //Click function to get more tweets
 
+        $("#tweed").click(function() {
 
-        $("#tweed").on("click", generateRandomTweet);
+          generateRandomTweet();
+
+          var tweets = streams.home.slice(currentFeedLength);
+          currentFeedLength = streams.home.length + 1;
+          for (var i = 0; i < tweets.length; i++) {
+            var tweet = tweets[i];
+            var $tweet = $('<div class="tweet"></div>');
+
+            $tweet.html('<b>@' + tweet.user + ':</b> ' + tweet.message + ' <i> - ' + tweet.created_at + '</i>');
+            $tweet.appendTo(".main");
+          }
+        });
       });
 
     </script>
