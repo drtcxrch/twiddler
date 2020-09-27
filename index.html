@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Twiddler</title>
     <script src="jquery.js"></script>
     <script src="dataGenerator.js"></script>
   </head>
+
   <body>
+    <h1>Twiddler</h1>
+    <button id="tweed">Get latest Tweeds!</button>
     <script>
+
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+        // $body.html('<div></div>');
+
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.html('<b>@' + tweet.user + ':</b> ' + tweet.message + ' <i> - ' + tweet.created_at + '</i>');
           $tweet.appendTo($body);
           index -= 1;
         }
 
+
+        $("#tweed").on("click", generateRandomTweet);
       });
 
     </script>
