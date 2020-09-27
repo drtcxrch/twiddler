@@ -21,17 +21,22 @@
 
 
       $(document).ready(function(){
-        var $body = $('.tweets');
 
+        function poplulateFeed() {
+          var index = streams.home.length - 1;
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.html('<b>@' + tweet.user + ':</b> ' + tweet.message + ' <i> - ' + tweet.created_at + '</i>');
-          $tweet.appendTo($body);
-          index -= 1;
+          while (index >= 0) {
+            var tweet = streams.home[index];
+            var $tweet = $('<div class="tweet"></div>');
+
+            $tweet.html('<b>@' + tweet.user + ':</b> ' + tweet.message + ' <i> - ' + tweet.created_at + '</i>');
+            $tweet.appendTo(".main");
+            index -= 1;
+          }
         }
+
+        poplulateFeed();
+
 
 
         $("#tweed").on("click", generateRandomTweet);
