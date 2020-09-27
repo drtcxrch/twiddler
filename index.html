@@ -7,14 +7,21 @@
   </head>
 
   <body>
-    <h1>Twiddler</h1>
-    <button id="tweed">Get latest Tweeds!</button>
+    <div class="container">
+      <h1>Twiddler</h1>
+      <button id="tweed">Get latest Tweeds!</button>
+      <div class="tweeds">
+        <section class="main">
+
+        </section>
+      </div>
+    </div>
+
     <script>
 
 
       $(document).ready(function(){
-        var $body = $('body');
-        // $body.html('<div></div>');
+        var $body = $('.tweets');
 
 
         var index = streams.home.length - 1;
