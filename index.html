@@ -27,7 +27,6 @@
 
     <script>
 
-
       $(document).ready(function(){
         var $body = $('.tweets');
         var currentFeedLength = 11;
@@ -46,6 +45,7 @@
             $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> - <em>' + jQuery.timeago(tweet.created_at) + '</em></span>').appendTo($tweet);
             index -= 1;
           }
+
         }
 
         poplulateFeed();
@@ -53,19 +53,10 @@
         //Click function to get more tweets
 
         $("#tweet").click(function() {
-
           generateRandomTweet();
+          $('.main').children(".tweet").remove();
+          poplulateFeed();
 
-          var tweets = streams.home.slice(currentFeedLength);
-          currentFeedLength = streams.home.length + 1;
-          for (var i = 0; i < tweets.length; i++) {
-            var tweet = tweets[i];
-            var $tweet = $('<div class="tweet"></div>');
-            var $user = $('<p class="user"></p>');
-             $('.home').hide();
-            $tweet.appendTo('.main');
-            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span>  - <em>' + jQuery.timeago(tweet.created_at) + '</em></span>').appendTo($tweet);
-          }
         });
 
         //Go to user feed
@@ -85,7 +76,7 @@
 
         });
 
-              //Go back to main feed
+        //Go back to main feed
 
         $('.home').click(function (event) {
           event.preventDefault();
@@ -100,7 +91,7 @@
 
         })
 
-                //Write new tweet
+        //Write new tweet
 
         var $textarea = $("<textarea placeholder='share your thoughts with the Twiddlerverse!' id='text' name='text' rows='3' style='overflow: hidden; word-wrap: break-word; resize: none; height: auto;'></textarea>");
         $textarea.appendTo('#submit');
@@ -121,10 +112,7 @@
           $('textarea').val('').blur();
         });
 
-
       });
-
-
 
     </script>
   </body>
