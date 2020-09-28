@@ -107,7 +107,7 @@
           streams.home.push(tweet);
 
           $('.home').hide();
-          $tweet.appendTo('.main');
+          $tweet.prependTo('.main');
           $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span>  - <em>' + jQuery.timeago(tweet.created_at) + '</em></span>').appendTo($tweet);
           $('textarea').val('').blur();
         });
