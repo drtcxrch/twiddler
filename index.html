@@ -4,6 +4,7 @@
     <title>Twiddler</title>
     <script src="jquery.js"></script>
     <script src="dataGenerator.js"></script>
+    <script src="jquery.timeago.js" type="text/javascript"></script>
   </head>
 
   <body>
@@ -42,7 +43,7 @@
             var $user = $('<p class="user"></p>');
             $('.home').hide();
            $tweet.appendTo('.main');
-            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> (Posted on <em> ' + tweet.created_at + ')</em></span>').appendTo($tweet);
+            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> - <em>' + jQuery.timeago(tweet.created_at) + '</em></span>').appendTo($tweet);
             index -= 1;
           }
         }
@@ -63,7 +64,7 @@
             var $user = $('<p class="user"></p>');
              $('.home').hide();
             $tweet.appendTo('.main');
-            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span> (Posted on <em> ' + tweet.created_at + ')</em></span>').appendTo($tweet);
+            $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span>  - <em>' + jQuery.timeago(tweet.created_at) + '</em></span>').appendTo($tweet);
           }
         });
 
@@ -108,12 +109,19 @@
 
           var $tweet = $('<div class=tweet></div>');
           var $user = $('<p class=user></p>');
+          var tweet = {};
+          tweet.user = $('input#username').val();
+          tweet.message = $('textarea').val()
+          tweet.created_at = new Date();
+          streams.home.push(tweet);
 
+          $('.home').hide();
           $tweet.appendTo('.main');
-          $user.addClass($('input#username').val()).attr('data-user', $('input#username').val()).html('<b>@' + $('input#username').val() + ': </b>' + $('textarea').val() + '<span> (Posted  on <em> ' + new Date() + ')</em></span>').appendTo($tweet);
+          $user.addClass(tweet.user).attr('data-user', tweet.user).html('<b>@' + tweet.user + ': </b>' + tweet.message + '<span>  - <em>' + jQuery.timeago(tweet.created_at) + '</em></span>').appendTo($tweet);
           $('textarea').val('').blur();
-
         });
+
+
       });
 
 
