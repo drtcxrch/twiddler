@@ -10,6 +10,11 @@
     <div class="container">
       <button class="home">Home</button>
       <h1>Twiddler</h1>
+      <div id="username">User <br><input id="username" type="text" name="username">
+        <form id='submit' method='get' action=''>
+        </form>
+        <button class="submit">Tweed!</button>
+      </div>
       <button id="tweet">Get latest Tweeds!</button>
       <div id="username"></div>
       <div class="tweets">
@@ -73,6 +78,7 @@
           $('.newTweets').hide();
           $('#username').hide();
           $('.home').show();
+          $('#tweet').hide();
           $('.tweet').not("div:contains('" + user + "')").hide();
           $("div:contains('" + user + "')").show();
 
@@ -85,13 +91,32 @@
           var user = $(this).data('user');
           $('.userpage').hide();
           $('.newTweets').show();
+          $('#tweet').show();
           $('.home').hide();
           $('#username').show();
           $("div:contains('" + user + "')").hide();
           $('.tweet').not("div:contains('" + user + "')").show();
 
         })
+
+                //Write new tweet
+
+        var $textarea = $("<textarea placeholder='share your thoughts with the Twiddlerverse!' id='text' name='text' rows='3' style='overflow: hidden; word-wrap: break-word; resize: none; height: auto;'></textarea>");
+        $textarea.appendTo('#submit');
+
+        $('.submit').on('click', function () {
+
+          var $tweet = $('<div class=tweet></div>');
+          var $user = $('<p class=user></p>');
+
+          $tweet.appendTo('.main');
+          $user.addClass($('input#username').val()).attr('data-user', $('input#username').val()).html('<b>@' + $('input#username').val() + ': </b>' + $('textarea').val() + '<span> (Posted  on <em> ' + new Date() + ')</em></span>').appendTo($tweet);
+          $('textarea').val('').blur();
+
+        });
       });
+
+
 
     </script>
   </body>
