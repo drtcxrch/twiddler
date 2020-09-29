@@ -5,18 +5,20 @@
     <script src="jquery.js"></script>
     <script src="dataGenerator.js"></script>
     <script src="jquery.timeago.js" type="text/javascript"></script>
+    <link  rel="stylesheet" href="stylesheet.css">
   </head>
 
   <body>
     <div class="container">
+      <img class="logo" src="LogoMakr_1kOL8J.png" alt="Twiddler"><br>
       <button class="home">Home</button>
-      <h1>Twiddler</h1>
-      <div id="username">User <br><input id="username" type="text" name="username">
+      <div class="username">Enter username: <br><input id="username" type="text" name="username">
         <form id='submit' method='get' action=''>
         </form>
-        <button class="submit">Tweed!</button>
+        <button class="submit">Post your Tweed!</button>
+        <button id="tweet">Get latest Tweeds!</button>
       </div>
-      <button id="tweet">Get latest Tweeds!</button>
+
       <div id="username"></div>
       <div class="tweets">
         <section class="main">
@@ -93,7 +95,7 @@
 
         //Write new tweet
 
-        var $textarea = $("<textarea placeholder='share your thoughts with the Twiddlerverse!' id='text' name='text' rows='3' style='overflow: hidden; word-wrap: break-word; resize: none; height: auto;'></textarea>");
+        var $textarea = $("<textarea placeholder='Share your thoughts with the Twiddlerverse!' id='text' name='text' rows='2' style='overflow: hidden; word-wrap: break-word; resize: none; height: auto;'></textarea>");
         $textarea.appendTo('#submit');
 
         $('.submit').on('click', function () {

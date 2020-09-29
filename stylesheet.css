@@ -1,0 +1,101 @@
+
+
+  body {
+    background-image: url("Harris_tweed.jpg");
+    text-align: center;
+    margin: auto;
+  }
+
+  .logo {
+    background: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    border: 3px  dashed red;
+  }
+
+  .container {
+    width: 100%;
+    margin: auto;
+  }
+
+  .tweets {
+    justify-content: center;
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+    padding: 20px 20px;
+    margin: 10px 400px;
+    background-color:white;
+    border-radius: 15px;
+  }
+
+  .tweet {
+    justify-content: center;
+    background-color:white;
+    padding: 10px 40px;
+    border: 1px  dashed red;
+  }
+
+  span {
+    color: grey'
+  }
+
+  .newTweets {
+    margin-bottom: 30px;
+  }
+
+  .home {
+    margin-top: 10px;
+  }
+
+  button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #000;
+    padding: 20px;
+    border-radius: 50px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+  }
+
+  .username {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    color: red;
+    margin-bottom: 20px;
+  }
+
+  #username {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: black;
+    margin-bottom: 20px;
+  }
+
+  .userpage {
+    font-size: 70px;
+    color: red;
+    margin: 10px;
+  }
+
+  textarea {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+  }
+
+
+
+
