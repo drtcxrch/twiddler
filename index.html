@@ -30,8 +30,6 @@
     <script>
 
       $(document).ready(function(){
-        var $body = $('.tweets');
-        var currentFeedLength = 11;
 
         //Populate initial feed
 
@@ -68,7 +66,7 @@
           var user = $(this).data('user');
           $('.userpage').remove();
           var $userpage = $('<h1 class=userpage>' + user + '\'s Tweeds</h1>');
-          $userpage.prependTo($body);
+          $userpage.prependTo($('.tweets'));
           $('.newTweets').hide();
           $('#username').hide();
           $('.home').show();
